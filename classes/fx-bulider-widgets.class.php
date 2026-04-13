@@ -14,10 +14,10 @@ class FXBuilderWidgets extends \WP_Widget {
 	}
 
 	public function widget($args, $instance) {
-		$content = \fx_builder\builder\Functions::content($instance['post_id']);
+		$content = \fx_builder\builder\Functions::content($instance['post_id'] ?? 0);
 		$content = do_shortcode($content);
 		echo wp_kses_post($args['before_widget']);
-		if ($instance['show_title'] === 'on') {
+		if (($instance['show_title'] ?? '') === 'on') {
 			echo wp_kses_post($args['before_title'].apply_filters('widget_title', get_the_title($instance['post_id'])).$args['after_title']);
 		}
 		echo wp_kses_post($content);
@@ -52,7 +52,7 @@ class FXBuilderWidgets extends \WP_Widget {
 		foreach ($posts as $post) {
 			$title      = $post->post_title;
 			$post_id    = $post->ID;
-			$selected = ($post_id === $current_id) ? ' selected' : '';
+			$selected   = ($post_id === $current_id) ? ' selected' : '';
 			echo '<option value="'.esc_attr($post_id).'"'.esc_attr($selected).'>'.esc_html($title).'</option>';
 		}
 		?>
