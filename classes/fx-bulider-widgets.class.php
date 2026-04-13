@@ -4,12 +4,14 @@ namespace xxsimoxx\FXBuilderWidgets;
 
 class FXBuilderWidgets extends \WP_Widget {
 	function __construct() {
+		$opts = [
+			'description'                 => esc_html__('FX Builder\'s post.', 'fx-builder-widgets'),
+			'customize_selective_refresh' => true,
+		];
 		parent::__construct(
 			'fx_builder_widgets',
 			esc_html__('FX Builder content', 'fx-builder-widgets'),
-			[
-				'description' => esc_html__('Page widget', 'fx-builder-widgets'),
-			]
+			$opts
 		);
 	}
 
