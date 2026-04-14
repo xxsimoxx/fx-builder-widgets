@@ -43,7 +43,7 @@ class CustomPostType {
 			'show_in_admin_bar'   => true,
 			'show_in_nav_menus'   => true,
 			'query_var'           => true,
-			'exclude_from_search' => true
+			'exclude_from_search' => true,
 		];
 		register_post_type(self::CPT, $args);
 	}
@@ -55,12 +55,12 @@ class CustomPostType {
 		update_post_meta($post_id, '_fxb_active', 1);
 	}
 
-	public function remove_editor( $hook ) {
-		if ( $hook !== 'post-new.php' && $hook !== 'post.php' ) {
+	public function remove_editor($hook) {
+		if ($hook !== 'post-new.php' && $hook !== 'post.php') {
 			return;
 		}
 		global $post;
-		if ($post->post_type !== self::CPT ) {
+		if ($post->post_type !== self::CPT) {
 			return;
 		}
 		wp_enqueue_script(self::CPT.'-hide-editor', plugin_dir_url(__DIR__).'/js/editor.js');
