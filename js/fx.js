@@ -4,5 +4,3 @@ document.addEventListener("DOMContentLoaded", function(){
 		checkbox.checked = true
 	});
 });
-
-
