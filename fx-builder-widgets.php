@@ -9,6 +9,7 @@
  * Requires PHP: 7.4
  * Requires CP:  2.0
  * Text Domain:  fx-builder-widgets
+ * Domain Path:  /languages
  */
 
 namespace xxsimoxx\FXBuilderWidgets;
@@ -18,6 +19,13 @@ if (!file_exists(ABSPATH.'wp-content/plugins/fx-builder/includes/builder/class-f
 ) {
 	return;
 }
+
+add_action(
+	'plugins_loaded',
+	function (){
+		load_plugin_textdomain('fx-builder-widgets', false, basename(dirname(__FILE__)).'/languages');
+	}
+);
 
 require_once ABSPATH.'wp-content/plugins/fx-builder/includes/builder/class-functions.php';
 require_once __DIR__.'/classes/fx-bulider-widgets.class.php';
