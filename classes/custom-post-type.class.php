@@ -9,6 +9,7 @@ class CustomPostType {
 		add_action('init', [$this, 'register_cpt']);
 		add_action('wp_insert_post', [$this, 'set_post_meta'], 10, 3);
 		add_action('admin_enqueue_scripts', [$this, 'remove_editor'], 10, 1);
+		add_action('admin_enqueue_scripts', [$this, 'change_fx_settings'], 10, 1);
 		$this->maybe_change_fxb_settings();
 	}
 
@@ -64,6 +65,13 @@ class CustomPostType {
 			return;
 		}
 		wp_enqueue_script(self::CPT.'-hide-editor', plugin_dir_url(__DIR__).'/js/editor.js');
+	}
+
+	public function change_fx_settings($hook) {
+		if ($hook !== 'toplevel_page_fx_builder') {
+			return;
+		}
+		wp_enqueue_script(self::CPT.'-change-fx', plugin_dir_url(__DIR__).'/js/fx.js');
 	}
 }
 
