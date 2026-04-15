@@ -2,7 +2,7 @@
 /**
  * Plugin Name:  FX Builder widgets
  * Description:  Display FX Builder pages as widget
- * Version:      0.0.1
+ * Version:      0.2.0
  * License:      GPL2
  * Author:       Simone Fioravanti
  * Author URI:   https://www.simonefioravanti.it
@@ -40,4 +40,4 @@ add_action('widgets_init', '\xxsimoxx\FXBuilderWidgets\register_fxbuilder_widget
 
 new CustomPostType();
 
-new \SimpleGitHubUpdater('xxsimoxx', 'fx-builder-widgets', 'fx-builder-widgets/fx-builder-widgets.php', 'plugin', false);
+new \SimpleGitHubUpdater('xxsimoxx', 'fx-builder-widgets', 'fx-builder-widgets/fx-builder-widgets.php');
