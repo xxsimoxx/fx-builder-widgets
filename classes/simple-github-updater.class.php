@@ -39,7 +39,7 @@ if (!class_exists('SimpleGitHubUpdater')) :
 			if (!$this->check_updates()) {
 				return $update;
 			}
-			if (version_compare($this->tag, $plugin_data['Version']) !== 1) {
+			if (version_compare(ltrim($this->tag, 'v'), $plugin_data['Version']) !== 1) {
 				return false;
 			}
 			return [
