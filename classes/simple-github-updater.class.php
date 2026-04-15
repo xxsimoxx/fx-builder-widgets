@@ -2,12 +2,26 @@
 if (!class_exists('SimpleGitHubUpdater')) :
 
 	class SimpleGitHubUpdater {
-		public $user = null,
+		private $user = null,
 				$repo = null,
 				$slug = null,
 				$tag  = null,
 				$url  = null;
 
+		/**
+		 * Init the instance of the updater.
+		 *
+		 * Require this file and then create a new instance of the class. Example:
+		 * new \SimpleGitHubUpdater('xxsimoxx', 'fx-builder-widgets', 'fx-builder-widgets/fx-builder-widgets.php');
+		 *
+		 * This class uses the tag of the release. Can be prefixed by the charachter 'v'.
+		 *
+		 * @param string  $user     GitHub user name.
+		 * @param string  $repo     GitHub repository name.
+		 * @param string  $slug     folder/file.php of the plugin or folder of the theme.
+		 * @param string  $type     'plugin' or 'theme'. Default 'plugin'
+		 * @param boolean $git_safe Do not run if there is a .git folder.
+		 */
 		public function __construct($user, $repo, $slug, $type = 'plugin', $git_safe = true) {
 			if (is_dir(dirname(__DIR__).'/.git') && $git_safe) {
 				return;
@@ -30,7 +44,7 @@ if (!class_exists('SimpleGitHubUpdater')) :
 			}
 			return [
 				'slug'         => $plugin_file,
-				'version'      => $this->tag,
+				'version'      => ltrim($this->tag, 'v'),
 				'package'      => $this->url,
 			];
 		}
