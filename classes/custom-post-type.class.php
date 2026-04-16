@@ -39,7 +39,7 @@ class CustomPostType {
 			'description'         => esc_html__('Holds FX Builder content for widgets.', 'fx-builder-widgets'),
 			'public'              => true,
 			'menu_icon'           => 'dashicons-welcome-widgets-menus',
-			'menu_position'       => 61,
+			'menu_position'       => 100,
 			'supports'            => ['title', 'editor', 'thumbnail', 'custom-fields', 'fx-builder'],
 			'has_archive'         => true,
 			'show_in_admin_bar'   => true,
