@@ -7,12 +7,12 @@ if (!defined('FBW_REMOVE_CONTENT_ON_UNINSTALL') || FBW_REMOVE_CONTENT_ON_UNINSTA
 	exit;
 }
 
-$posts = get_posts([
+$post_list = get_posts([
 	'post_type'      => 'fx-builder-content',
 	'posts_per_page' => -1,
 	'post_status'    => 'any',
 ]);
 
-foreach ($posts as $post) {
+foreach ($post_list as $post) {
 	wp_delete_post($post->ID, true);
 }
