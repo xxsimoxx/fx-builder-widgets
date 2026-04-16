@@ -83,7 +83,8 @@ if (!class_exists('SimpleGitHubUpdater')) :
 				[
 					'tag' => $this->tag,
 					'url' => $this->url,
-				]
+				],
+				DAY_IN_SECONDS
 			);
 		}
 	}
