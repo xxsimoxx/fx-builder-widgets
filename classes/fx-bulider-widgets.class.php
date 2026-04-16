@@ -45,7 +45,7 @@ class FXBuilderWidgets extends \WP_Widget {
 			],
 		]);
 		$typelookup = [
-			'page'               => esc_html__('Pagea', 'fx-builder-widgets'),
+			'page'               => esc_html__('Pages', 'fx-builder-widgets'),
 			'post'               => esc_html__('Posts', 'fx-builder-widgets'),
 			'fx-builder-content' => esc_html__('FX Builder widget contents', 'fx-builder-widgets'),
 		]
