@@ -63,7 +63,7 @@ class FXBuilderWidgets extends \WP_Widget {
 				if ($lastposttype !== '') {
 					echo '</optgroup>';
 				}
-				echo '<optgroup label="'.($typelookup[$post->post_type] ?? $post->post_type).'">';
+				echo '<optgroup label="'.esc_html($typelookup[$post->post_type] ?? $post->post_type).'">';
 				$lastposttype = $post->post_type;
 			}
 			$title      = $post->post_title;
