@@ -6,4 +6,12 @@ If you don't want to put your content in a post or page, *FX Builder widget cont
 
 Create the widget, select the content, decide if you want the title to be shown. Just this.
 
+## Customizations
+
+### Delete FX Builder widget contents on uninstall
+By default the plugins leave the custom post in the database.
+If you want to remove on uninstall, put in `wp-config.php` this code:
+`define ( 'FBW_REMOVE_CONTENT_ON_UNINSTALL', true );` 
+
 [![ClassicPress Directory Coding Standard checks.](https://github.com/xxsimoxx/fx-builder-widgets/actions/workflows/cpcs.yml/badge.svg)](https://github.com/xxsimoxx/fx-builder-widgets/actions/workflows/cpcs.yml)
+
