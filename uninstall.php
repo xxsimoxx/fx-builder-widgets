@@ -13,6 +13,6 @@ $post_list = get_posts([
 	'post_status'    => 'any',
 ]);
 
-foreach ($post_list as $post) {
-	wp_delete_post($post->ID, true);
+foreach ($post_list as $p) {
+	wp_delete_post($p->ID, true);
 }
