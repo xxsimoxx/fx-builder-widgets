@@ -34,6 +34,7 @@ class FXBuilderWidgets extends \WP_Widget {
 		$posts = get_posts([
 			'post_type'   => $post_types,
 			'post_status' => 'publish',
+			'orderby'     => ['type' => 'DESC'],
 			'numberposts' => -1,
 			'meta_query'  => [ //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 				[
@@ -43,21 +44,35 @@ class FXBuilderWidgets extends \WP_Widget {
 				],
 			],
 		]);
+		$typelookup = [
+			'page'               => esc_html__('Pagea', 'fx-builder-widgets'),
+			'post'               => esc_html__('Posts', 'fx-builder-widgets'),
+			'fx-builder-content' => esc_html__('FX Builder widget contents', 'fx-builder-widgets'),
+		]
 		?>
 		<p>
 		<label for="<?php echo esc_attr($this->get_field_id('post_id')); ?>"><?php esc_html_e('Select content:', 'fx-builder-widgets'); ?></label>
 		<select id="<?php echo esc_attr($this->get_field_id('post_id')); ?>" name="<?php echo esc_attr($this->get_field_name('post_id')); ?>" >
 		<option value="0" disabled selected><?php esc_html_e('--Please choose an option--', 'fx-builder-widgets'); ?></option>
 		<?php
-		$current_id = (int) ($instance['post_id'] ?? '');
-		$show_title = $instance['show_title'] ?? '';
+		$current_id   = (int) ($instance['post_id'] ?? '');
+		$show_title   = $instance['show_title'] ?? '';
+		$lastposttype = '';
 		foreach ($posts as $post) {
+			if ($post->post_type !== $lastposttype) {
+				if ($lastposttype !== '') {
+					echo '</optgroup>';
+				}
+				echo '<optgroup label="'.($typelookup[$post->post_type] ?? $post->post_type).'">';
+				$lastposttype = $post->post_type;
+			}
 			$title      = $post->post_title;
 			$post_id    = $post->ID;
 			$selected   = ($post_id === $current_id) ? ' selected' : '';
 			echo '<option value="'.esc_attr($post_id).'"'.esc_attr($selected).'>'.esc_html($title).'</option>';
 		}
 		?>
+		</optgroup>
 		</select>
 		</p>
 		<p>
