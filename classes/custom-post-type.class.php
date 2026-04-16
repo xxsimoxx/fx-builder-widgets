@@ -6,6 +6,17 @@ class CustomPostType {
 	const CPT = 'fx-builder-content';
 
 	public function __construct() {
+		/**
+		 * Allow to disable custom post type.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param bool $disable (default false).
+		*/
+		$disable = apply_filters('fbw_disable_cpt', false);
+		if ($disable) {
+			return;
+		}
 		add_action('init', [$this, 'register_cpt']);
 		add_action('wp_insert_post', [$this, 'set_post_meta'], 10, 3);
 		add_action('admin_enqueue_scripts', [$this, 'remove_editor'], 10, 1);
