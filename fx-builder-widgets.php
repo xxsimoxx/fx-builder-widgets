@@ -7,7 +7,7 @@
  * Author:       Simone Fioravanti
  * Author URI:   https://www.simonefioravanti.it
  * Requires PHP: 7.4
- * Requires CP:  2.0
+ * Requires CP:  2.4
  * Text Domain:  fx-builder-widgets
  * Domain Path:  /languages
  * Update URI:   https://github.com
@@ -18,6 +18,20 @@ namespace xxsimoxx\FXBuilderWidgets;
 if (!file_exists(ABSPATH.'wp-content/plugins/fx-builder/includes/builder/class-functions.php')
 	|| !is_plugin_active('fx-builder/fx-builder.php')
 ) {
+	add_action( 'admin_notices', function () {
+		global $pagenow;
+		if ($pagenow !== 'plugins.php') {
+			return;
+		}
+		wp_admin_notice(
+			esc_html__('"FX Builder widgets" plugin is not working because it needs "FX Builder" to be installed and activated.', 'fx-builder-widgets'),
+			[
+				'id'                 => 'fx-builder-widgets-fx-missing',
+				'dismissible'        => true,
+				'type' => 'warning',
+			]
+		);
+	});
 	return;
 }
 
