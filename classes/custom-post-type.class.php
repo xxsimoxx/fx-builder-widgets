@@ -21,7 +21,22 @@ class CustomPostType {
 		add_action('wp_insert_post', [$this, 'set_post_meta'], 10, 3);
 		add_action('admin_enqueue_scripts', [$this, 'remove_editor'], 10, 1);
 		add_action('admin_enqueue_scripts', [$this, 'change_fx_settings'], 10, 1);
+		add_action('admin_head', [$this, 'help']);
 		$this->maybe_change_fxb_settings();
+	}
+
+	public function help() {
+		$screen = get_current_screen();
+		if ($screen->post_type !== self::CPT) {
+			return;
+		}
+
+		$args = [
+			'id'      => 'fx_builder_content_help_general',
+			'title'   => esc_html__('Overview', 'fx-builder-widgets'),
+			'content' => '<p>'.esc_html__('Here you can create and manage custom pages that you will find in the widget\'s dropdown.', 'fx-builder-widgets').'</p>',
+		];
+		$screen->add_help_tab($args);
 	}
 
 	private function maybe_change_fxb_settings() {
