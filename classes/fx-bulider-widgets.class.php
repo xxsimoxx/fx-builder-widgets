@@ -74,7 +74,6 @@ class FXBuilderWidgets extends \WP_Widget {
 		$show_title   = $instance['show_title'] ?? '';
 		$lastposttype = '';
 		foreach ($posts as $post) {
-		var_dump($post);
 			if ($post->post_type !== $lastposttype) {
 				if ($lastposttype !== '') {
 					echo '</optgroup>';
