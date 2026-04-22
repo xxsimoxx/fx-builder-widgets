@@ -15,7 +15,22 @@ class FXBuilderWidgets extends \WP_Widget {
 		);
 	}
 
+	public function can_display_post($id) {
+		$post = get_post($id);
+		if (!($post instanceof \WP_Post)) {
+			return false;
+		}
+		if ($post->post_status !== 'publish' || $post->post_password !== '') {
+			return false;
+		}
+		return true;
+	}
+
 	public function widget($args, $instance) {
+		if (!$this->can_display_post($instance['post_id'] ?? 0)) {
+			return;
+		}
+
 		$content = \fx_builder\builder\Functions::content($instance['post_id'] ?? 0);
 		$content = do_shortcode($content);
 		echo wp_kses_post($args['before_widget']);
@@ -33,7 +48,7 @@ class FXBuilderWidgets extends \WP_Widget {
 		}
 		$posts = get_posts([
 			'post_type'   => $post_types,
-			'post_status' => 'publish',
+			'post_status' => 'any',
 			'orderby'     => ['type' => 'DESC'],
 			'numberposts' => -1,
 			'meta_query'  => [ //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
@@ -59,6 +74,7 @@ class FXBuilderWidgets extends \WP_Widget {
 		$show_title   = $instance['show_title'] ?? '';
 		$lastposttype = '';
 		foreach ($posts as $post) {
+		var_dump($post);
 			if ($post->post_type !== $lastposttype) {
 				if ($lastposttype !== '') {
 					echo '</optgroup>';
@@ -66,10 +82,11 @@ class FXBuilderWidgets extends \WP_Widget {
 				echo '<optgroup label="'.esc_html($typelookup[$post->post_type] ?? $post->post_type).'">';
 				$lastposttype = $post->post_type;
 			}
-			$title      = $post->post_title;
-			$post_id    = $post->ID;
-			$selected   = ($post_id === $current_id) ? ' selected' : '';
-			echo '<option value="'.esc_attr($post_id).'"'.esc_attr($selected).'>'.esc_html($title).'</option>';
+			$title    = $post->post_title;
+			$post_id  = $post->ID;
+			$selected = ($post_id === $current_id) ? ' selected' : '';
+			$disabled = ($post->post_status === 'publish') ? '' : ' disabled';
+			echo '<option value="'.esc_attr($post_id).'"'.esc_attr($selected).esc_attr($disabled).'>'.esc_html($title).'</option>';
 		}
 		?>
 		</optgroup>
