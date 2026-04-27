@@ -2,7 +2,7 @@
 /**
  * Plugin Name:  FX Builder widgets
  * Description:  Display FX Builder pages as widget
- * Version:      0.4.0
+ * Version:      1.0.0
  * License:      GPL2
  * Author:       Simone Fioravanti
  * Author URI:   https://www.simonefioravanti.it
@@ -10,7 +10,6 @@
  * Requires CP:  2.4
  * Text Domain:  fx-builder-widgets
  * Domain Path:  /languages
- * Update URI:   https://github.com
  */
 
 namespace xxsimoxx\FXBuilderWidgets;
@@ -26,9 +25,9 @@ if (!file_exists(ABSPATH.'wp-content/plugins/fx-builder/includes/builder/class-f
 		wp_admin_notice(
 			esc_html__('"FX Builder widgets" plugin is not working because it needs "FX Builder" to be installed and activated.', 'fx-builder-widgets'),
 			[
-				'id'                 => 'fx-builder-widgets-fx-missing',
-				'dismissible'        => true,
-				'type' => 'warning',
+				'id'          => 'fx-builder-widgets-fx-missing',
+				'dismissible' => true,
+				'type'        => 'warning',
 			]
 		);
 	});
@@ -53,5 +52,3 @@ function register_fxbuilder_widget() {
 add_action('widgets_init', '\xxsimoxx\FXBuilderWidgets\register_fxbuilder_widget');
 
 new CustomPostType();
-
-new \SimpleGitHubUpdater('xxsimoxx', 'fx-builder-widgets', 'fx-builder-widgets/fx-builder-widgets.php');
