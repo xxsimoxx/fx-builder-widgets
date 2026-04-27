@@ -44,7 +44,6 @@ add_action(
 require_once ABSPATH.'wp-content/plugins/fx-builder/includes/builder/class-functions.php';
 require_once __DIR__.'/classes/fx-bulider-widgets.class.php';
 require_once __DIR__.'/classes/custom-post-type.class.php';
-require_once __DIR__.'/classes/simple-github-updater.class.php';
 
 function register_fxbuilder_widget() {
 	register_widget('\xxsimoxx\FXBuilderWidgets\FXBuilderWidgets');
