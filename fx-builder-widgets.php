@@ -2,7 +2,7 @@
 /**
  * Plugin Name:  FX Builder widgets
  * Description:  Display FX Builder pages as widget
- * Version:      1.0.0
+ * Version:      1.0.1
  * License:      GPL2
  * Author:       Simone Fioravanti
  * Author URI:   https://www.simonefioravanti.it
