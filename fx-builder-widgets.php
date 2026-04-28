@@ -14,7 +14,7 @@
 
 namespace xxsimoxx\FXBuilderWidgets;
 
-if (!file_exists(ABSPATH.'wp-content/plugins/fx-builder/includes/builder/class-functions.php')
+if (!file_exists(WP_PLUGIN_DIR.'/fx-builder/includes/builder/class-functions.php')
 	|| !is_plugin_active('fx-builder/fx-builder.php')
 ) {
 	add_action( 'admin_notices', function () {
@@ -41,7 +41,7 @@ add_action(
 	}
 );
 
-require_once ABSPATH.'wp-content/plugins/fx-builder/includes/builder/class-functions.php';
+require_once WP_PLUGIN_DIR.'/fx-builder/includes/builder/class-functions.php';
 require_once __DIR__.'/classes/fx-bulider-widgets.class.php';
 require_once __DIR__.'/classes/custom-post-type.class.php';
 
