@@ -15,7 +15,7 @@ If you want to remove on uninstall, put in `wp-config.php` this code:
 `define ( 'FBW_REMOVE_CONTENT_ON_UNINSTALL', true );` 
 
 ### Disable custom post type
-If you don't need it, put in an utility plugin or in your theme `functions.php` this code:
+If you don't need it, put in an utility mu-plugin or in your theme `functions.php` this code:
 
 `add_filter( 'fbw_disable_cpt', __return_true );`
 
