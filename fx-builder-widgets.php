@@ -14,6 +14,7 @@
 
 namespace xxsimoxx\FXBuilderWidgets;
 
+require_once ABSPATH.'wp-admin/includes/plugin.php';
 if (!file_exists(WP_PLUGIN_DIR.'/fx-builder/includes/builder/class-functions.php')
 	|| !is_plugin_active('fx-builder/fx-builder.php')
 ) {
