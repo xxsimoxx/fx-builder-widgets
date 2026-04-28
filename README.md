@@ -17,7 +17,7 @@ If you want to remove on uninstall, put in `wp-config.php` this code:
 ### Disable custom post type
 If you don't need it, put in an utility mu-plugin or in your theme `functions.php` this code:
 
-`add_filter( 'fbw_disable_cpt', __return_true );`
+`add_filter( 'fbw_disable_cpt', '__return_true' );`
 
 [![ClassicPress Directory Coding Standard checks.](https://github.com/xxsimoxx/fx-builder-widgets/actions/workflows/cpcs.yml/badge.svg)](https://github.com/xxsimoxx/fx-builder-widgets/actions/workflows/cpcs.yml)
 
