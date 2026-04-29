@@ -1,4 +1,4 @@
-![FX Builder widgets banner](images/banner-1544x500.png "FX Builder widgets")
+![FX Builder widgets banner](images/banner-1544x500.jpg "FX Builder widgets")
 
 # FX Builder widgets
 Display [FX Builder](https://github.com/wolffe/fx-builder) pages as widgets.
