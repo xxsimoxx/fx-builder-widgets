@@ -8,6 +8,13 @@ If you don't want to put your content in a post or page, *FX Builder widget cont
 
 Create the widget, select the content, decide if you want the title to be shown. Just this.
 
+## Usage steps
+
+1. In *"FX Builder widget contents"* admin, create or edit a post. It's like any posts or pages with FX Builder enabled.
+2. Find the *"FX Builder contents"* widget and put in the desired section.
+3. Choose the content to display from the dropdown. You'll find FX Builder widget contents posts as long as any post or page using FX Builder.
+4. Use the *"Show title"* checkbox to choose to display post title or not.
+
 ## Customizations
 
 ### Delete FX Builder widget contents on uninstall
