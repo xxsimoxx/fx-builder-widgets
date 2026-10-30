@@ -25,10 +25,21 @@ jobs:
           with:
             use_local_config: 'true'
             enable_warnings: 'true'
-            extra_args: '--report-json=./phpcs.json'
+            # Standalone dependency doubles are exercised by the rendering job.
+            extra_args: '--ignore=*/tests/* --report-json=./phpcs.json'
         - name: Update summary
           run: |
             npm i -g github:10up/phpcs-json-to-md
             phpcs-json-to-md --path ./phpcs.json --output ./phpcs.md
             cat phpcs.md >> $GITHUB_STEP_SUMMARY
           if: always()
+
+  rendering:
+    name: Widget rendering regression tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Test with and without the optional FX Shortcodes parser
+        run: |
+          php tests/widget-rendering.php
+          php tests/widget-rendering.php --with-fx-shortcodes

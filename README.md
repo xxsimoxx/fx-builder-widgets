@@ -15,6 +15,21 @@ Create the widget, select the content, decide if you want the title to be shown.
 3. Choose the content to display from the dropdown. You'll find FX Builder widget contents posts as long as any post or page using FX Builder.
 4. Use the *"Show title"* checkbox to choose to display post title or not.
 
+## Optional FX Shortcodes support
+
+When FX Shortcodes is active, its `[element]` markup is parsed before ordinary shortcodes in widget content. FX Shortcodes is optional; content without it follows the existing rendering path. The widget does not apply the full `the_content` filter chain.
+
+## Regression tests
+
+No test dependencies are required. Run both cases in separate PHP processes:
+
+```sh
+php tests/widget-rendering.php
+php tests/widget-rendering.php --with-fx-shortcodes
+```
+
+These tests use dependency doubles to check the widget rendering pipeline, optional-parser detection, ordering, wrappers, and visibility checks. They do not replace integration testing with the real FX plugins and ClassicPress.
+
 ## Customizations
 
 ### Delete FX Builder widget contents on uninstall

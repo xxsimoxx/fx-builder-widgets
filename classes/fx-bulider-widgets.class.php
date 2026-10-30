@@ -32,6 +32,10 @@ class FXBuilderWidgets extends \WP_Widget {
 		}
 
 		$content = \fx_builder\builder\Functions::content($instance['post_id'] ?? 0);
+		// FX Shortcodes parses [element] outside the normal shortcode registry.
+		if (function_exists('fx_shortcodes_parse')) {
+			$content = \fx_shortcodes_parse($content);
+		}
 		$content = do_shortcode($content);
 		echo wp_kses_post($args['before_widget']);
 		if (($instance['show_title'] ?? '') === 'on') {
