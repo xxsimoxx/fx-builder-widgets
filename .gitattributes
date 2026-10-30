@@ -2,3 +2,4 @@
 .github export-ignore
 .gitignore export-ignore
 classes/simple-github-updater.class.php export-ignore
+tests export-ignore
